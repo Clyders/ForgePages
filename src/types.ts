@@ -8,4 +8,4 @@ declare module "@tryforge/forgescript" {
     /** Map<storeID, PageStore> */
     pageStores?: Map<string, PageStore>;
   }
-} 
+}

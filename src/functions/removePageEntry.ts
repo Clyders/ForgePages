@@ -8,8 +8,20 @@ export default new NativeFunction({
   unwrap: true,
   output: ArgType.Boolean,
   args: [
-    { name: "id", description: "Store identifier", type: ArgType.String, required: true, rest: false },
-    { name: "index", description: "1-based index to remove", type: ArgType.Number, required: true, rest: false }
+    {
+      name: "id",
+      description: "Store identifier",
+      type: ArgType.String,
+      required: true,
+      rest: false,
+    },
+    {
+      name: "index",
+      description: "1-based index to remove",
+      type: ArgType.Number,
+      required: true,
+      rest: false,
+    },
   ],
   async execute(ctx) {
     const id: Return = await this["resolveUnhandledArg"](ctx, 0);
@@ -26,5 +38,5 @@ export default new NativeFunction({
 
     store.data.splice(i, 1);
     return this.success(true);
-  }
-}); 
+  },
+});

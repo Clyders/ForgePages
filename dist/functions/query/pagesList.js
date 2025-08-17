@@ -9,9 +9,27 @@ exports.default = new forgescript_1.NativeFunction({
     unwrap: true,
     output: forgescript_1.ArgType.String,
     args: [
-        { name: "id", description: "Store identifier", type: forgescript_1.ArgType.String, required: true, rest: false },
-        { name: "page", description: "Page number to get", type: forgescript_1.ArgType.Number, required: true, rest: false },
-        { name: "per", description: "Items per page", type: forgescript_1.ArgType.Number, required: true, rest: false }
+        {
+            name: "id",
+            description: "Store identifier",
+            type: forgescript_1.ArgType.String,
+            required: true,
+            rest: false,
+        },
+        {
+            name: "page",
+            description: "Page number to get",
+            type: forgescript_1.ArgType.Number,
+            required: true,
+            rest: false,
+        },
+        {
+            name: "per",
+            description: "Items per page",
+            type: forgescript_1.ArgType.Number,
+            required: true,
+            rest: false,
+        },
     ],
     async execute(ctx) {
         const id = await this["resolveUnhandledArg"](ctx, 0);
@@ -29,6 +47,6 @@ exports.default = new forgescript_1.NativeFunction({
         const start = (page.value - 1) * per.value;
         const slice = store.data.slice(start, start + per.value);
         return this.success(slice.join(store.sep));
-    }
+    },
 });
 //# sourceMappingURL=pagesList.js.map

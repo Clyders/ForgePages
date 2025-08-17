@@ -9,8 +9,20 @@ exports.default = new forgescript_1.NativeFunction({
     unwrap: true,
     output: forgescript_1.ArgType.Boolean,
     args: [
-        { name: "id", description: "Store identifier", type: forgescript_1.ArgType.String, required: true, rest: false },
-        { name: "index", description: "1-based index to remove", type: forgescript_1.ArgType.Number, required: true, rest: false }
+        {
+            name: "id",
+            description: "Store identifier",
+            type: forgescript_1.ArgType.String,
+            required: true,
+            rest: false,
+        },
+        {
+            name: "index",
+            description: "1-based index to remove",
+            type: forgescript_1.ArgType.Number,
+            required: true,
+            rest: false,
+        },
     ],
     async execute(ctx) {
         const id = await this["resolveUnhandledArg"](ctx, 0);
@@ -27,6 +39,6 @@ exports.default = new forgescript_1.NativeFunction({
             return this.success(false);
         store.data.splice(i, 1);
         return this.success(true);
-    }
+    },
 });
 //# sourceMappingURL=removePageEntry.js.map

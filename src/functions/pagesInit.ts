@@ -9,9 +9,27 @@ export default new NativeFunction({
   unwrap: true,
   output: ArgType.Boolean,
   args: [
-    { name: "id", description: "Store identifier", type: ArgType.String, required: true, rest: false },
-    { name: "sep", description: "Separator to split data", type: ArgType.String, required: true, rest: false },
-    { name: "rawData", description: "Raw data string to split", type: ArgType.String, required: true, rest: false }
+    {
+      name: "id",
+      description: "Store identifier",
+      type: ArgType.String,
+      required: true,
+      rest: false,
+    },
+    {
+      name: "sep",
+      description: "Separator to split data",
+      type: ArgType.String,
+      required: true,
+      rest: false,
+    },
+    {
+      name: "rawData",
+      description: "Raw data string to split",
+      type: ArgType.String,
+      required: true,
+      rest: false,
+    },
   ],
   async execute(ctx) {
     if (!ctx.client.pageStores) ctx.client.pageStores = new Map();
@@ -27,10 +45,10 @@ export default new NativeFunction({
 
     const store: PageStore = {
       sep: sep.value as string,
-      data: (raw.value as string).split(sep.value as string)
+      data: (raw.value as string).split(sep.value as string),
     };
 
     ctx.client.pageStores.set((id.value as string).trim(), store);
     return this.success(true);
-  }
-}); 
+  },
+});

@@ -8,9 +8,27 @@ export default new NativeFunction({
   unwrap: true,
   output: ArgType.Number,
   args: [
-    { name: "id", description: "Store identifier", type: ArgType.String, required: true, rest: false },
-    { name: "query", description: "Search query", type: ArgType.String, required: true, rest: false },
-    { name: "per", description: "Items per page", type: ArgType.Number, required: false, rest: false }
+    {
+      name: "id",
+      description: "Store identifier",
+      type: ArgType.String,
+      required: true,
+      rest: false,
+    },
+    {
+      name: "query",
+      description: "Search query",
+      type: ArgType.String,
+      required: true,
+      rest: false,
+    },
+    {
+      name: "per",
+      description: "Items per page",
+      type: ArgType.Number,
+      required: false,
+      rest: false,
+    },
   ],
   async execute(ctx) {
     const id: Return = await this["resolveUnhandledArg"](ctx, 0);
@@ -26,9 +44,11 @@ export default new NativeFunction({
     const store = ctx.client.pageStores?.get((id.value as string).trim());
     if (!store) return this.customError(`Store "${id.value}" does not exist`);
 
-    const idx = store.data.findIndex(v => v.toLowerCase().includes((q.value as string).toLowerCase()));
+    const idx = store.data.findIndex((v) =>
+      v.toLowerCase().includes((q.value as string).toLowerCase()),
+    );
     if (idx === -1) return this.success(0);
 
     return this.success(Math.floor(idx / per) + 1);
-  }
-}); 
+  },
+});

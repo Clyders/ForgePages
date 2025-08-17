@@ -22,8 +22,8 @@
     "paging"
   ],
   "scripts": {
-    "build": "tsc",
-    "docgen": "tsc && node dist/generateMdFunctions.js"
+    "prepare": "prettier src -w && tsc",
+    "docgen": "tsc && node dist/docgen"
   },
   "devDependencies": {
     "@tryforge/forgescript": "^2.3.0",
@@ -31,6 +31,8 @@
     "dotenv": "^16.3.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "prettier": "^3.6.2"
   }
 }
- 

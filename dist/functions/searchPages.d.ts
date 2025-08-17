@@ -14,9 +14,9 @@ declare const _default: NativeFunction<[{
 }, {
     name: string;
     description: string;
-    type: ArgType.Number;
-    required: false;
+    type: ArgType.String;
+    required: true;
     rest: false;
-}], true>;
+}], false>;
 export default _default;
 //# sourceMappingURL=searchPages.d.ts.map

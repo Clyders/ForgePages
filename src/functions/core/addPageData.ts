@@ -8,8 +8,20 @@ export default new NativeFunction({
   unwrap: true,
   output: ArgType.Boolean,
   args: [
-    { name: "id", description: "Store identifier", type: ArgType.String, required: true, rest: false },
-    { name: "values", description: "Values to append", type: ArgType.String, required: true, rest: false }
+    {
+      name: "id",
+      description: "Store identifier",
+      type: ArgType.String,
+      required: true,
+      rest: false,
+    },
+    {
+      name: "values",
+      description: "Values to append",
+      type: ArgType.String,
+      required: true,
+      rest: false,
+    },
   ],
   async execute(ctx) {
     const id: Return = await this["resolveUnhandledArg"](ctx, 0);
@@ -23,5 +35,5 @@ export default new NativeFunction({
 
     store.data.push(...(values.value as string).split(store.sep));
     return this.success(true);
-  }
-}); 
+  },
+});

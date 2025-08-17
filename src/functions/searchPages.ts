@@ -2,9 +2,9 @@ import {
   ArgType,
   IExtendedCompiledFunctionField,
   NativeFunction,
-  Return
+  Return,
 } from "@tryforge/forgescript";
-import type { PageStore } from "../../types.js";
+import type { PageStore } from "../types.js";
 
 export default new NativeFunction({
   name: "$advancedSearchPages",
@@ -20,28 +20,29 @@ export default new NativeFunction({
       description: "The store identifier",
       type: ArgType.String,
       required: true,
-      rest: false
+      rest: false,
     },
     {
       name: "variable",
       description: "The name of the variable to assign each entry to",
       type: ArgType.String,
       required: true,
-      rest: false
+      rest: false,
     },
     {
       name: "code",
-      description: "ForgeScript code to execute for each entry (use $return to output values)",
+      description:
+        "ForgeScript code to execute for each entry (use $return to output values)",
       type: ArgType.String,
       required: true,
-      rest: false
-    }
+      rest: false,
+    },
   ],
 
   async execute(ctx) {
     // destructure the raw function‐argument fields
-    const [idField, varField, codeField] =
-      this.data.fields! as IExtendedCompiledFunctionField[];
+    const [idField, varField, codeField] = this.data
+      .fields! as IExtendedCompiledFunctionField[];
 
     // resolve the store ID
     const idRet: Return = (await this["resolveCode"](ctx, idField)) as Return;
@@ -66,7 +67,7 @@ export default new NativeFunction({
 
       // run the user's snippet - use the raw code field like $arrayMap does
       const rt: Return = (await this["resolveCode"](ctx, codeField)) as Return;
-      
+
       // if code used $return, collect the returned value
       if (rt.return) {
         results.push(String(rt.value));
@@ -77,5 +78,5 @@ export default new NativeFunction({
 
     // return the results joined by the store's separator
     return this.success(results.join(store.sep));
-  }
-}); 
+  },
+});

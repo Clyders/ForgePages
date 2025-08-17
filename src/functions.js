@@ -5,7 +5,13 @@
 // create or overwrite a store
 export const init = (stores, id, sep, raw) => {
   if (!id || !sep) return false;
-  stores.set(id, { sep, data: raw.split(sep).map(x => x.trim()).filter(Boolean) });
+  stores.set(id, {
+    sep,
+    data: raw
+      .split(sep)
+      .map((x) => x.trim())
+      .filter(Boolean),
+  });
   return true;
 };
 
@@ -32,7 +38,12 @@ export const count = (stores, id, per = 10) =>
 export const add = (stores, id, values) => {
   const store = stores.get(id);
   if (!store) return false;
-  store.data.push(...values.split(store.sep).map(x => x.trim()).filter(Boolean));
+  store.data.push(
+    ...values
+      .split(store.sep)
+      .map((x) => x.trim())
+      .filter(Boolean),
+  );
   return true;
 };
 
@@ -57,6 +68,6 @@ export const sort = (stores, id, dir = "asc") => {
 export const search = (stores, id, query, per = 10) => {
   const store = stores.get(id);
   if (!store) return 0;
-  const idx = store.data.findIndex(x => x.includes(query));
+  const idx = store.data.findIndex((x) => x.includes(query));
   return idx < 0 ? 0 : Math.floor(idx / per) + 1;
 };

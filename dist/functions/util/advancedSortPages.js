@@ -31,27 +31,28 @@ exports.default = new forgescript_1.NativeFunction({
             description: "The $env variable 1 to hold first comparison value",
             rest: false,
             type: forgescript_1.ArgType.String,
-            required: true
+            required: true,
         },
         {
             name: "var2",
             description: "The $env variable 2 to hold second comparison value",
             rest: false,
             type: forgescript_1.ArgType.String,
-            required: true
+            required: true,
         },
         {
             name: "code",
             description: "Code to execute for comparison (should return number: negative if first < second, 0 if equal, positive if first > second)",
             rest: false,
             type: forgescript_1.ArgType.String,
-            required: true
-        }
+            required: true,
+        },
     ],
     output: forgescript_1.ArgType.Boolean,
     async execute(ctx) {
         // destructure the raw function‐argument fields
-        const [idField, var1Field, var2Field, codeField] = this.data.fields;
+        const [idField, var1Field, var2Field, codeField] = this.data
+            .fields;
         // resolve the store ID
         const idRet = (await this["resolveCode"](ctx, idField));
         if (!this["isValidReturnType"](idRet))

@@ -8,8 +8,20 @@ export default new NativeFunction({
   unwrap: true,
   output: ArgType.Number,
   args: [
-    { name: "id", description: "Store identifier", type: ArgType.String, required: true, rest: false },
-    { name: "per", description: "Items per page", type: ArgType.Number, required: false, rest: false }
+    {
+      name: "id",
+      description: "Store identifier",
+      type: ArgType.String,
+      required: true,
+      rest: false,
+    },
+    {
+      name: "per",
+      description: "Items per page",
+      type: ArgType.Number,
+      required: false,
+      rest: false,
+    },
   ],
   async execute(ctx) {
     const id: Return = await this["resolveUnhandledArg"](ctx, 0);
@@ -25,5 +37,5 @@ export default new NativeFunction({
 
     const pages = Math.ceil(store.data.length / per);
     return this.success(pages);
-  }
-}); 
+  },
+});

@@ -8,9 +8,27 @@ export default new NativeFunction({
   unwrap: true,
   output: ArgType.String,
   args: [
-    { name: "id", description: "Store identifier", type: ArgType.String, required: true, rest: false },
-    { name: "page", description: "Page number to get", type: ArgType.Number, required: true, rest: false },
-    { name: "per", description: "Items per page", type: ArgType.Number, required: true, rest: false }
+    {
+      name: "id",
+      description: "Store identifier",
+      type: ArgType.String,
+      required: true,
+      rest: false,
+    },
+    {
+      name: "page",
+      description: "Page number to get",
+      type: ArgType.Number,
+      required: true,
+      rest: false,
+    },
+    {
+      name: "per",
+      description: "Items per page",
+      type: ArgType.Number,
+      required: true,
+      rest: false,
+    },
   ],
   async execute(ctx) {
     const id: Return = await this["resolveUnhandledArg"](ctx, 0);
@@ -28,5 +46,5 @@ export default new NativeFunction({
     const start = ((page.value as number) - 1) * (per.value as number);
     const slice = store.data.slice(start, start + (per.value as number));
     return this.success(slice.join(store.sep));
-  }
-}); 
+  },
+});

@@ -9,9 +9,27 @@ exports.default = new forgescript_1.NativeFunction({
     unwrap: true,
     output: forgescript_1.ArgType.String,
     args: [
-        { name: "id", description: "Store identifier", type: forgescript_1.ArgType.String, required: true, rest: false },
-        { name: "startIndex", description: "1-based start index", type: forgescript_1.ArgType.Number, required: true, rest: false },
-        { name: "count", description: "Number of items to get", type: forgescript_1.ArgType.Number, required: true, rest: false }
+        {
+            name: "id",
+            description: "Store identifier",
+            type: forgescript_1.ArgType.String,
+            required: true,
+            rest: false,
+        },
+        {
+            name: "startIndex",
+            description: "1-based start index",
+            type: forgescript_1.ArgType.Number,
+            required: true,
+            rest: false,
+        },
+        {
+            name: "count",
+            description: "Number of items to get",
+            type: forgescript_1.ArgType.Number,
+            required: true,
+            rest: false,
+        },
     ],
     async execute(ctx) {
         const id = await this["resolveUnhandledArg"](ctx, 0);
@@ -28,6 +46,6 @@ exports.default = new forgescript_1.NativeFunction({
             return this.customError(`Store "${id.value}" does not exist`);
         const slice = store.data.slice(start.value - 1, start.value - 1 + count.value);
         return this.success(slice.join(store.sep));
-    }
+    },
 });
 //# sourceMappingURL=pagesSlice.js.map

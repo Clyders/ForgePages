@@ -9,8 +9,20 @@ exports.default = new forgescript_1.NativeFunction({
     unwrap: true,
     output: forgescript_1.ArgType.Boolean,
     args: [
-        { name: "id", description: "Store identifier", type: forgescript_1.ArgType.String, required: true, rest: false },
-        { name: "direction", description: "Sort direction (asc/desc)", type: forgescript_1.ArgType.String, required: false, rest: false }
+        {
+            name: "id",
+            description: "Store identifier",
+            type: forgescript_1.ArgType.String,
+            required: true,
+            rest: false,
+        },
+        {
+            name: "direction",
+            description: "Sort direction (asc/desc)",
+            type: forgescript_1.ArgType.String,
+            required: false,
+            rest: false,
+        },
     ],
     async execute(ctx) {
         const id = await this["resolveUnhandledArg"](ctx, 0);
@@ -26,6 +38,6 @@ exports.default = new forgescript_1.NativeFunction({
             ? b.localeCompare(a)
             : a.localeCompare(b));
         return this.success(true);
-    }
+    },
 });
 //# sourceMappingURL=sortPages.js.map

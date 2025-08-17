@@ -14,26 +14,27 @@ exports.default = new forgescript_1.NativeFunction({
             description: "The store identifier",
             type: forgescript_1.ArgType.String,
             required: true,
-            rest: false
+            rest: false,
         },
         {
             name: "variable",
             description: "The name of the variable to assign each entry to",
             type: forgescript_1.ArgType.String,
             required: true,
-            rest: false
+            rest: false,
         },
         {
             name: "code",
             description: "ForgeScript code to execute for each entry (use $return to output values)",
             type: forgescript_1.ArgType.String,
             required: true,
-            rest: false
-        }
+            rest: false,
+        },
     ],
     async execute(ctx) {
         // destructure the raw function‐argument fields
-        const [idField, varField, codeField] = this.data.fields;
+        const [idField, varField, codeField] = this.data
+            .fields;
         // resolve the store ID
         const idRet = (await this["resolveCode"](ctx, idField));
         if (!this["isValidReturnType"](idRet))
@@ -65,6 +66,6 @@ exports.default = new forgescript_1.NativeFunction({
         }
         // return the results joined by the store's separator
         return this.success(results.join(store.sep));
-    }
+    },
 });
 //# sourceMappingURL=searchPages.js.map
